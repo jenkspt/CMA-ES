@@ -42,7 +42,7 @@ if __name__ == '__main__':
     spacing = np.linspace(low, high, size)    
 
     grid = np.stack(np.meshgrid(spacing, spacing), -1)
-    function = lambda X: rastrigin(X + [3,2])
+    function = lambda X: rastrigin(X + [3,2])   # Move the min away from (0,0)
     #function = rosenbrock
     Z = function(grid)
     
@@ -53,7 +53,7 @@ if __name__ == '__main__':
     d = 2       # Dimensions
     k = 25      # Size of elite population
 
-    X = np.random.normal(0,1.28, (d, n))
+    X = np.random.normal(0,1.24, (d, n))
 
     for i in range(24):
         # Minimize this function
@@ -78,7 +78,7 @@ if __name__ == '__main__':
             _plot_points(X.T, low, high, size)
             plt.pause(.2)
             plt.draw()
-            plt.savefig(f'plots/fig-{i}.png')
+            plt.savefig(f'plots/fig-{i}.jpg')
     """
     es = cma.CMAEvolutionStrategy([0]*2, 1, {'popsize': n})
     for i in range(50):
